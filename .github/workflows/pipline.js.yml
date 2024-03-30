@@ -44,6 +44,7 @@ jobs:
       
   deploy:
     needs: test-integration
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to production
@@ -51,4 +52,3 @@ jobs:
       with:
         service-id: ${{ secrets.SERVICE_ID }}
         api-key: ${{ secrets.RENDER_TOKEN }}
-        wait-for-success: true

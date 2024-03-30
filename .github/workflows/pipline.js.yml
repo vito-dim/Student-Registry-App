@@ -2,6 +2,7 @@ name: Build and Test
 
 on:
   push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch: 
@@ -26,11 +27,12 @@ jobs:
 
   test-integration:
     needs: test-security
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        os: [ ubuntu-22.04 ]
+        node-version: [ 20.x ]
         # 16.x soon is going to be depricated
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout the repository

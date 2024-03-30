@@ -43,4 +43,4 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Run integration tests
-      run: npm run test-npm-security
+      run: npm test-npm-security

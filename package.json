@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "mocha tests/*.js",
-    "test-nmp-security": "npm audit",
+    "test-npm-security": "npm audit",
     "start": "node index.js"
   }
 }

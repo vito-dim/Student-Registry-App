@@ -1,4 +1,4 @@
-name: Build Test
+name: Build and Test
 
 on:
   push:
@@ -8,9 +8,9 @@ on:
   workflow_dispatch: 
 
 jobs:
-  build-test:
-    runs-on: ubuntu-latest
 
+  test-integration:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20.x]
@@ -28,3 +28,19 @@ jobs:
       run: npm install
     - name: Run integration tests
       run: npm run test
+
+  test-security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v3
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm install
+    - name: Run integration tests
+      run: npm test-npm-security
